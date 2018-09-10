@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from "react";
+import Books from "./pages/Main";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>Fantasy Edge</h1> 
-        <h2>List of players</h2> 
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Main />
+  </div>
+);
 
 export default App;
