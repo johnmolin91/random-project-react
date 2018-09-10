@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const Schema = mongoose.Schema;
+const Schema = mysql.Schema;
 
 const bookSchema = new Schema({
   title: { type: String, required: true },

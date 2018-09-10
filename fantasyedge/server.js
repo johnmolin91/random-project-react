@@ -1,25 +1,30 @@
-const express = require("express");
-const mysql = require("mysql");
-const bodyParser = require("body-parser");
+const express = require('express');
+const mysql      = require('mysql');
+
 const app = express();
-const PORT = process.env.PORT || 3001;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); 
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-  
-    // Your username
-    user: "root",
-  
-    // Your password
-    password: "root",
-    database: "nbaplayerstats18adv"
-  });
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  port     : 3306,
+  user     : 'root',
+  password : 'root',
+  database : 'nbaplayerstats18adv'
+});
 
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
+app.get('/players', function (req, res) {
+  console.log(req);
+  connection.query('select * FROM playersadvanced LIMIT 10', function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify(results));
   });
+});
+
+
+// Start the server
+app.listen(3000, () => {
+ console.log('Go to http://localhost:3000/players to see stats');
+});
