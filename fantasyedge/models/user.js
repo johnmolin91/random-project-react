@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-        email: DataTypes.STRING,
-        password: DataTypes.String
+    var User = sequelize.define("playersadvanced", {
+        Player: DataTypes.STRING
+    }, {
+        freezeTableName: true
     });
     return User;
 }
