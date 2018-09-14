@@ -1,8 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("playersadvanced", {
+    var playersadvanced = sequelize.define("playersadvanced", {
+        Rk: {
+            type: DataTypes.INTEGER,
+            primaryKey: true
+        },
         Player: DataTypes.STRING
-    }, {
-        freezeTableName: true
-    });
-    return User;
+        }, {
+        timestamps: false,
+        freezeTableName: true,
+        }
+    );
+    return playersadvanced;
 }

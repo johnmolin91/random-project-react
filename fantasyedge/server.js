@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require("./models");
+const control = require("./controllers/playersController.js");
 const mysql2 = require('mysql2');
 
 var PORT = process.env.PORT || 3000;
@@ -15,11 +16,6 @@ db.sequelize.sync().then(function() {
     console.log("Listening on port ", PORT);
   });
 });
-
-
-
-
-
 
 
 
