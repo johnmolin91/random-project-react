@@ -1,15 +1,25 @@
 const express = require('express');
 const db = require("./models");
-const control = require("./controllers/playersController.js");
+const routes = require("./routes/api/players");
+const bodyParser = require('body-parser');
 const mysql2 = require('mysql2');
 
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-const bodyParser = require('body-parser');
+const connection = mysql2.createConnection({
+  host     : 'localhost',
+  port     : 3306,
+  user     : 'root',
+  password : 'root',
+  database : 'nbaplayerstats18adv'
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(routes);
 
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
@@ -17,7 +27,7 @@ db.sequelize.sync().then(function() {
   });
 });
 
-
+console.log(module.exports);
 
 
 

@@ -1,14 +1,22 @@
 const db = require("../models");
+const express = require("express");
+const router = express.Router();
 
-module.exports = {
-    findAll: function(req, res) {
-        db.playersadvanced
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    }
-}
+router.get("/", function(req, res) {
+    res.redirect("/burgers");
+});
+
+router.get("/burgers", function(req, res) {
+    db.playersadvanced.findAll()
+        .then(function(dbplayersadvanced) {
+            console.log(dbplayersadvanced);
+            var hbsObject = { playersadvanced: dbplayersadvanced };
+            return res.render("index", hbsObject);
+        });
+});
 
 // db.playersadvanced.findAll( {limit: 10 }).then(function(dbNames) {
 //     console.log(dbNames);
 // })
+
+module.exports = router;

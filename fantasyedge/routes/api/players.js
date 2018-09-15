@@ -1,8 +1,21 @@
-const router = require("express").Router();
-const playersController = require("../../controllers/playersController");
+// const router = require("express").Router();
+const Players = require("../../controllers/playersController");
 
-// Matches with "/api/players"
-router.route("/")
-    .post(playersController.findAll);
+module.exports = function(app) {
+    app.get("/api/players", function(req, res) {
+        Players.findAll({})
+        .then(function(result) {
+          return res.json(result);
+        });
+    })
+}
 
-module.exports = router;
+
+
+
+
+// // Matches with "/api/players"
+// router.route("/")
+//     .post(playersController.findAll);
+
+// module.exports = router;
